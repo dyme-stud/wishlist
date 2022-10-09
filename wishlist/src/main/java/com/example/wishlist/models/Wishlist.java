@@ -19,7 +19,7 @@ public class Wishlist {
     @Column()
     private String name;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @Column
     private List<Wish> wishes;
 }
