@@ -1,6 +1,12 @@
 package com.example.wishlist.services.user;
 
-import com.example.wishlist.services.user.IUserService;
+import com.example.wishlist.models.User;
+import com.example.wishlist.models.Wishlist;
 
-public class UserService implements IUserService {
+import java.util.List;
+
+public interface UserService {
+    User updateInformation();
+    Wishlist addWishlist(Wishlist wishlist);
+    List<Wishlist> getAllWishlists(Long userId);
 }

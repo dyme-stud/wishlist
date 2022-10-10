@@ -1,10 +1,9 @@
 package com.example.wishlist.services.wish;
 
-import com.example.wishlist.services.wish.IWishService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+import com.example.wishlist.models.Wish;
 
-@Service
-@RequiredArgsConstructor
-public class WishService implements IWishService {
+public interface WishService {
+    Wish createWish(Wish wish, Long wishlistId);
+    void updateWish(Wish wish, Long wishId);
+    void deleteWish(Long wishId);
 }
