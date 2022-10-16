@@ -15,17 +15,27 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     @Override
-    public User updateInformation() {
+    public User updateInformation()
+    {
+
         return null;
     }
 
     @Override
-    public Wishlist addWishlist(Wishlist wishlist) {
-        return null;
+    public void addWishlist(Wishlist wishlist, Long userId)
+    {
+        var user =  userRepository.getReferenceById(userId);
+        var wishlists = user.getWishlists();
+        wishlists.add(wishlist);
+        user.setWishlists(wishlists);
+        userRepository.save(user);
     }
 
+
     @Override
-    public List<Wishlist> getAllWishlists(Long userId) {
-        return null;
+    public List<Wishlist> getAllWishlists(Long userId)
+    {
+        var user = userRepository.getReferenceById(userId);
+        return user.getWishlists();
     }
 }
