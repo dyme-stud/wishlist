@@ -2,7 +2,10 @@ package com.example.wishlist.models;
 
 import com.example.wishlist.enums.WishPriority;
 import com.example.wishlist.enums.WishStatus;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 

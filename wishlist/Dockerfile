@@ -1,8 +1,10 @@
 #Builder
 FROM maven:3.8.6-openjdk-18-slim AS build
-COPY src /app/src
-COPY pom.xml /app
-RUN mvn -f /app/pom.xml clean package
+WORKDIR /app
+COPY pom.xml .
+RUN mvn verify --fail-never
+COPY . .
+RUN mvn package -DskipTests
 
 #app
 FROM openjdk:18-jdk-slim

@@ -3,7 +3,6 @@ package com.example.wishlist.services.wishlist;
 import com.example.wishlist.exceptions.WishlistNotFoundException;
 import com.example.wishlist.models.Wish;
 import com.example.wishlist.models.Wishlist;
-import com.example.wishlist.repositories.UserRepository;
 import com.example.wishlist.repositories.WishlistRepository;
 import com.example.wishlist.services.user.UserService;
 import lombok.RequiredArgsConstructor;
@@ -35,11 +34,8 @@ public class WishlistServiceImpl implements WishlistService {
     @Override
     public void addWish(Wish wish, Long wishlistId)
     {
-       var wishlist =  wishlistRepository.getReferenceById(wishlistId);
-       var wishes = wishlist.getWishes();
-       wishes.add(wish);
-       wishlist.setWishes(wishes);
+       var wishlist = wishlistRepository.findById(wishlistId).orElseThrow(WishlistNotFoundException::new);
+       wishlist.getWishes().add(wish);
        wishlistRepository.save(wishlist);
-
     }
 }

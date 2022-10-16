@@ -5,6 +5,7 @@ import com.example.wishlist.repositories.WishRepository;
 import com.example.wishlist.services.wishlist.WishlistService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -23,6 +24,7 @@ public class WishServiceImpl implements WishService {
     }
 
     @Override
+    @Transactional
     public void updateWish(Wish wish, Long wishId)
     {
         var wishFind = wishRepository.getReferenceById(wishId);
@@ -35,6 +37,5 @@ public class WishServiceImpl implements WishService {
     public void deleteWish(Long wishId)
     {
         wishRepository.deleteById(wishId);
-
     }
 }
