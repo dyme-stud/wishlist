@@ -7,6 +7,12 @@ import java.util.List;
 
 public interface UserService {
     User updateInformation();
+
     void addWishlist(Wishlist wishlist, Long userId);
-    List<Wishlist> getAllWishlists(Long userId);
+
+    User get(Long userId);
+
+    User create(User user);
+
+    void delete(Long userId);
 }

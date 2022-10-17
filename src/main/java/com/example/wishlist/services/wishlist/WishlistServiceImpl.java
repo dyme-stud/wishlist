@@ -8,6 +8,8 @@ import com.example.wishlist.services.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 @RequiredArgsConstructor
@@ -18,24 +20,26 @@ public class WishlistServiceImpl implements WishlistService {
     private final UserService userService;
 
     @Override
-    public Wishlist createWishlist(Wishlist wishlist, Long userId)
-    {
-        var savedWishlist =  wishlistRepository.save(wishlist);
+    public Wishlist createWishlist(Wishlist wishlist, Long userId) {
+        var savedWishlist = wishlistRepository.save(wishlist);
         userService.addWishlist(savedWishlist, userId);
         return savedWishlist;
     }
 
     @Override
-    public void deleteWishlist(Long wishlistId)
-    {
+    public void deleteWishlist(Long wishlistId) {
         wishlistRepository.deleteById(wishlistId);
     }
 
     @Override
-    public void addWish(Wish wish, Long wishlistId)
-    {
-       var wishlist = wishlistRepository.findById(wishlistId).orElseThrow(WishlistNotFoundException::new);
-       wishlist.getWishes().add(wish);
-       wishlistRepository.save(wishlist);
+    public void addWish(Wish wish, Long wishlistId) {
+        var wishlist = wishlistRepository.findById(wishlistId).orElseThrow(WishlistNotFoundException::new);
+        wishlist.getWishes().add(wish);
+        wishlistRepository.save(wishlist);
+    }
+
+    @Override
+    public List<Wishlist> getWishlists(Long userId) {
+        return userService.get(userId).getWishlists();
     }
 }

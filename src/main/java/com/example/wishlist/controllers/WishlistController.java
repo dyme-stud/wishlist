@@ -3,8 +3,9 @@ package com.example.wishlist.controllers;
 import com.example.wishlist.models.Wishlist;
 import com.example.wishlist.services.wishlist.WishlistService;
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.connector.Response;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(path = "/wishlist")
@@ -13,18 +14,19 @@ public class WishlistController {
 
     private final WishlistService wishlistService;
 
-    @PostMapping("/create/{userId}")
-    public int create(@PathVariable Long userId, @RequestBody Wishlist wishlist)
-    {
-        wishlistService.createWishlist(wishlist, userId);
-        return Response.SC_OK;
+    @GetMapping("/{userId}")
+    public List<Wishlist> get(@PathVariable Long userId) {
+        return wishlistService.getWishlists(userId);
     }
 
-    @DeleteMapping("/delete/{wishlistId}")
-    public int delete(@PathVariable Long wishlistId)
-    {
+    @PostMapping("/{userId}")
+    public Wishlist create(@PathVariable Long userId, @RequestBody Wishlist wishlist) {
+        return wishlistService.createWishlist(wishlist, userId);
+    }
+
+    @DeleteMapping("/{wishlistId}")
+    public void delete(@PathVariable Long wishlistId) {
         wishlistService.deleteWishlist(wishlistId);
-        return Response.SC_OK;
     }
 
 }

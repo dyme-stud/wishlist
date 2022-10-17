@@ -3,7 +3,6 @@ package com.example.wishlist.controllers;
 import com.example.wishlist.models.Wish;
 import com.example.wishlist.services.wish.WishService;
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.connector.Response;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -14,22 +13,17 @@ public class WishController {
     private final WishService wishService;
 
     @PostMapping("/{wishlistId}")
-    public Wish create(@PathVariable Long wishlistId, @RequestBody Wish wish)
-    {
+    public Wish create(@PathVariable Long wishlistId, @RequestBody Wish wish) {
         return wishService.createWish(wish, wishlistId);
     }
 
     @PatchMapping("/{wishId}")
-    public int update(@PathVariable Long wishId, @RequestBody Wish wish)
-    {
-        wishService.updateWish(wish, wishId);
-        return Response.SC_OK;
+    public Wish update(@PathVariable Long wishId, @RequestBody Wish wish) {
+        return wishService.updateWish(wish, wishId);
     }
 
     @DeleteMapping("/{wishId}")
-    public int delete(@PathVariable Long wishId)
-    {
+    public void delete(@PathVariable Long wishId) {
         wishService.deleteWish(wishId);
-        return Response.SC_OK;
     }
 }

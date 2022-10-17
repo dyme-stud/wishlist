@@ -6,10 +6,7 @@ import com.example.wishlist.models.Wishlist;
 import com.example.wishlist.repositories.UserRepository;
 import com.example.wishlist.services.user.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,34 +15,20 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping(path = "/user")
 public class UserController {
-
-    private final UserRepository userRepository;
     private final UserService userService;
 
+    @PostMapping()
+    public User create(@RequestBody User user) {
+        return userService.create(user);
+    }
 
     @GetMapping("/{userId}")
-    public List<Wishlist> getAllWishlist(@PathVariable Long userId) {
-        return userService.getAllWishlists(userId);
+    public User get(@PathVariable Long userId) {
+        return userService.get(userId);
     }
 
-    @GetMapping("/create")
-    public User create() {
-        return userRepository.save(
-                User.builder()
-                        .firstName("Matvey")
-                        .lastName("Ilichev")
-                        .wishlists(Arrays.asList(
-                                Wishlist
-                                        .builder()
-                                        .name("first_list")
-                                        .wishes(Arrays.asList(
-                                                Wish
-                                                        .builder()
-                                                        .name("123")
-                                                        .build()
-                                        ))
-                                        .build()))
-                        .build());
+    @DeleteMapping("/{userId}")
+    public void delete(@PathVariable Long userId) {
+        userService.delete(userId);
     }
-
 }

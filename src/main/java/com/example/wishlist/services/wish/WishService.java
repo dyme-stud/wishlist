@@ -4,6 +4,8 @@ import com.example.wishlist.models.Wish;
 
 public interface WishService {
     Wish createWish(Wish wish, Long wishlistId);
-    void updateWish(Wish wish, Long wishId);
+
+    Wish updateWish(Wish wish, Long wishId);
+
     void deleteWish(Long wishId);
 }
