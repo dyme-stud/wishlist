@@ -1,25 +1,28 @@
 package com.example.wishlist.controllers;
 
+import com.example.wishlist.exceptions.UserNotFoundException;
 import com.example.wishlist.models.User;
-import com.example.wishlist.models.Wish;
-import com.example.wishlist.models.Wishlist;
-import com.example.wishlist.repositories.UserRepository;
 import com.example.wishlist.services.user.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
-import java.util.List;
-
-@RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/user")
+@Controller
 public class UserController {
     private final UserService userService;
 
-    @PostMapping()
-    public User create(@RequestBody User user) {
-        return userService.create(user);
+    @PostMapping("/registration")
+    public String create(User user, Model model) {
+        try {
+            userService.create(user);
+            return "redirect:/login";
+        } catch (UserNotFoundException ex) {
+            model.addAttribute("message", "User exists");
+            return "registration";
+        }
     }
 
     @GetMapping("/{userId}")
@@ -33,8 +36,7 @@ public class UserController {
     }
 
     @GetMapping("/registration")
-    public String registration()
-    {
+    public String registration() {
         return "registration";
     }
 

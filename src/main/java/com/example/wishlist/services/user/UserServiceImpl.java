@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public User create(User user) {
-        if (userRepository.findByEmail(user.getEmail()) != null) return null;
+        if (userRepository.findByEmail(user.getEmail()) != null) throw new UserNotFoundException();
         user.setActive(true);
         user.getRoles().add(Role.User);
         return userRepository.save(user);
