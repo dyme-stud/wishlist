@@ -3,9 +3,10 @@ package com.example.wishlist.controllers;
 import com.example.wishlist.models.Wish;
 import com.example.wishlist.services.wish.WishService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@Controller
 @RequestMapping(path = "/wish")
 @RequiredArgsConstructor
 public class WishController {

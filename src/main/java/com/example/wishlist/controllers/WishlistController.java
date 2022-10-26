@@ -3,11 +3,12 @@ package com.example.wishlist.controllers;
 import com.example.wishlist.models.Wishlist;
 import com.example.wishlist.services.wishlist.WishlistService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping(path = "/wishlist")
 @RequiredArgsConstructor
 public class WishlistController {

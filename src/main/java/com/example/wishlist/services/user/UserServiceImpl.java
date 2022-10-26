@@ -1,6 +1,7 @@
 package com.example.wishlist.services.user;
 
 import com.example.wishlist.enums.Role;
+import com.example.wishlist.exceptions.UserExistException;
 import com.example.wishlist.exceptions.UserNotFoundException;
 import com.example.wishlist.models.User;
 import com.example.wishlist.models.Wishlist;
@@ -14,7 +15,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -44,8 +44,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    @Transactional
     public User create(User user) {
-        if (userRepository.findByEmail(user.getEmail()) != null) throw new UserNotFoundException();
+        if (userRepository.findByEmail(user.getEmail()) != null) throw new UserExistException();
         user.setActive(true);
         user.getRoles().add(Role.User);
         return userRepository.save(user);

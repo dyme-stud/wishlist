@@ -1,5 +1,6 @@
 package com.example.wishlist.controllers;
 
+import com.example.wishlist.exceptions.UserExistException;
 import com.example.wishlist.exceptions.UserNotFoundException;
 import com.example.wishlist.models.User;
 import com.example.wishlist.services.user.UserService;
@@ -19,7 +20,7 @@ public class UserController {
         try {
             userService.create(user);
             return "redirect:/login";
-        } catch (UserNotFoundException ex) {
+        } catch (UserExistException ex) {
             model.addAttribute("message", "User exists");
             return "registration";
         }
