@@ -11,12 +11,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
 @RequiredArgsConstructor
 @Controller
 public class DefaultController {
+
+    private final UserService userService;
+
     @GetMapping("/")
-    public String getMain(Model model) {
+    public String getMain(Model model, HttpServletResponse response) {
         var currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
-        return "redirect:/wishlist/1";
+        var currentUserId = userService.get(currentUserName).getId();
+        var cookie = new Cookie("user_id", currentUserId.toString());
+        response.addCookie(cookie);
+        return "redirect:/wishlist";
     }
 }

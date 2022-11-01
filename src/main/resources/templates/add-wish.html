@@ -14,7 +14,7 @@
   <div th:replace="~{fragments/side-bar :: side-bar (wishlists=${wishlists})}"></div>
   <div th:replace="~{fragments/wishlist :: wishlist (name=${name}, wishes=${wishes}, wishListId=${wishListId})}"></div>
 
-  <form id="add-wish-form" th:action="@{/wish/{userId}/{wishListId}(userId=1, wishListId=${wishListId})}" method="post">
+  <form id="add-wish-form" th:action="@{/wish/{wishListId}(wishListId=${wishListId})}" method="post">
     <input placeholder="Желание" required name="name">
     <input type="number" placeholder="Цена" name="price">
     <input placeholder="Ссылка" name="link">

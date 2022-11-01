@@ -18,10 +18,10 @@ public class WishController {
 
     private final WishService wishService;
 
-    @PostMapping("/{userId}/{wishlistId}")
-    public String create(@PathVariable Long userId, @PathVariable Long wishlistId, Wish wish) {
+    @PostMapping("/{wishlistId}")
+    public String create(@CookieValue(value = "user_id") Long userId, @PathVariable Long wishlistId, Wish wish) {
         wishService.createWish(wish, wishlistId);
-        return MessageFormat.format("redirect:/wishlist/{0}/{1}", userId, wishlistId);
+        return MessageFormat.format("redirect:/wishlist/{0}", wishlistId);
     }
 
     @PatchMapping("/{wishId}")

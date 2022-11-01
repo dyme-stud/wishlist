@@ -19,26 +19,26 @@ import java.util.List;
 public class WishlistController {
     private final WishlistService wishlistService;
 
-    @GetMapping("/{userId}")
-    public String getMainPage(@PathVariable Long userId, Model model) {
+    @GetMapping("")
+    public String getMainPage(@CookieValue(value = "user_id") Long userId, Model model) {
         model.addAttribute("wishlists", wishlistService.getWishlists(userId));
         return "main-page";
     }
 
-    @GetMapping("/{userId}/addWishlist")
-    public String getAddWishListPage(@PathVariable Long userId, Model model) {
+    @GetMapping("/addWishlist")
+    public String getAddWishListPage(@CookieValue(value = "user_id") Long userId, Model model) {
         model.addAttribute("wishlists", wishlistService.getWishlists(userId));
         return "add-wishlist";
     }
 
-    @PostMapping("/{userId}")
-    public String createWishList(@PathVariable Long userId, Wishlist wishlist) {
+    @PostMapping("")
+    public String createWishList(@CookieValue(value = "user_id") Long userId, Wishlist wishlist) {
         wishlistService.createWishlist(wishlist, userId);
-        return MessageFormat.format("redirect:/wishlist/{0}/{1}", userId, wishlist.getId());
+        return MessageFormat.format("redirect:/wishlist/{0}", wishlist.getId());
     }
 
-    @GetMapping("/{userId}/{wishListId}")
-    public String getWishList(@PathVariable Long userId, @PathVariable Long wishListId, Model model) {
+    @GetMapping("/{wishListId}")
+    public String getWishList(@CookieValue(value = "user_id") Long userId, @PathVariable Long wishListId, Model model) {
         var wishlists = wishlistService.getWishlists(userId);
         model.addAttribute("wishlists", wishlists);
         var wishList = wishlists.stream()
@@ -51,8 +51,8 @@ public class WishlistController {
         return "wish-list";
     }
 
-    @GetMapping("/{userId}/{wishListId}/addWish")
-    public String getAddWishPage(@PathVariable Long userId, @PathVariable Long wishListId, Model model) {
+    @GetMapping("/{wishListId}/addWish")
+    public String getAddWishPage(@CookieValue(value = "user_id") Long userId, @PathVariable Long wishListId, Model model) {
         var wishlists = wishlistService.getWishlists(userId);
         model.addAttribute("wishlists", wishlists);
         var wishList = wishlists.stream()

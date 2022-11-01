@@ -15,7 +15,7 @@
   <div th:replace="~{fragments/side-bar :: side-bar (wishlists=${wishlists})}"></div>
   <div id="wishlist">
     <div id="wishlist-description">
-      <form id="wishlist-header" th:action="@{/wishlist/1}" method="post">
+      <form id="wishlist-header" th:action="@{/wishlist}" method="post">
         <input placeholder="Название" name="name">
 <!--        <input type="date" id="start" name="wishlist-due-date"-->
 <!--               value="2022-11-01">-->

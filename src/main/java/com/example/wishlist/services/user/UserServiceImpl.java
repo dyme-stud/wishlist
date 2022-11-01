@@ -44,6 +44,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    public User get(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    @Override
     @Transactional
     public User create(User user) {
         if (userRepository.findByEmail(user.getEmail()) != null) throw new UserExistException();

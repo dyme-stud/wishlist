@@ -1,7 +1,7 @@
 function addWishlist() {
-    return window.location.href = '/wishlist/1/addWishlist';
+    return window.location.href = '/wishlist/addWishlist';
 }
 
 function addWish(wishListId) {
-    return window.location.href = `/wishlist/1/${wishListId}/addWish`;
+    return window.location.href = `/wishlist/${wishListId}/addWish`;
 }
