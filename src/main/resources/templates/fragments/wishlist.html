@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div id="wishlist" th:fragment="wishlist (name, wishes, wishListId)">
+    <div id="wishlist-header">
+        <div id="wishlist-description">
+            <p id="wishlist-title" th:text="${name}"></p>
+            <!--                <div class="text-with-icon">-->
+            <!--                    <img src="/img/clock.png" alt="">-->
+            <!--                    <p>1 мая 2023</p>-->
+            <!--                </div>-->
+        </div>
+        <div class="text-with-icon">
+            <img src="/img/share.png" alt="">
+            <a>Поделиться</a>
+        </div>
+    </div>
+
+    <div id="wishes">
+        <div class="wish" th:each="wish : ${wishes}">
+            <img src="/img/gift-default.png" th:src="@{/img/gift-default.png}" alt="" class="wish-img">
+            <div class="wish-description">
+                <p class="wish-name" th:text="${wish.getName()}"></p>
+                <p class="wish-price" th:text="${wish.getPrice()}"></p>
+            </div>
+        </div>
+        <div id="add-wish-button" th:attr="onclick=|addWish('${wishListId}')|" >
+            <p id="plus">+</p>
+            <p>Добавить желание</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

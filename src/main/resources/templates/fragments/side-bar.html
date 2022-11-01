@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+<div id="side-bar" th:fragment="side-bar (wishlists)">
+  <p>Вишлисты</p>
+  <div th:each="wishlist: ${wishlists}">
+    <div class="text-with-icon">
+      <img src="/img/logo.png" th:src="@{/img/logo.png}" alt="">
+      <a th:text="${wishlist.getName()}" th:href="@{'/wishlist/1/' + ${wishlist.getId()}}"></a>
+    </div>
+  </div>
+  <button th:onclick="addWishlist()"><b>+</b> Добавить</button>
+</div>
+
+</body>
+
+</html>

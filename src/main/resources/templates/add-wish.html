@@ -7,136 +7,25 @@
   <link rel="stylesheet" href="/main.css">
 </head>
 <body>
-
-<header>
-  <div id="nav-bar">
-    <img src="/img/logo.png" alt="Logo" id="logo">
-    <a>Мои вишлисты</a>
-    <a>Буду дарить</a>
-  </div>
-  <div id="profile">
-    <img src="/img/avatar-default.jpg" alt="avatar" id="avatar">
-    <div>
-      <a>Профиль</a>
-      <a>Выход</a>
-    </div>
-  </div>
-</header>
+<script type="text/javascript" th:src="@{/main.js}"></script>
+<div th:replace="~{fragments/header :: header}"></div>
 
 <div id="layout">
-  <div id="side-bar">
-    <p>Вишлисты</p>
-    <div class="text-with-icon">
-      <img src="/img/logo.png" alt="" class="point">
-      <a>На день рождения</a>
-    </div>
-    <div class="text-with-icon">
-      <img src="/img/logo.png" alt="" class="point">
-      <a>Личный</a>
-    </div>
-    <button><b>+</b> Добавить</button>
-  </div>
+  <div th:replace="~{fragments/side-bar :: side-bar (wishlists=${wishlists})}"></div>
+  <div th:replace="~{fragments/wishlist :: wishlist (name=${name}, wishes=${wishes}, wishListId=${wishListId})}"></div>
 
-  <div id="wishlist">
-    <div id="wishlist-header">
-      <div id="wishlist-description">
-        <p id="wishlist-title">На день рождения</p>
-        <div class="text-with-icon">
-          <img src="/img/clock.png" alt="">
-          <p>1 мая 2023</p>
-        </div>
-      </div>
-      <div class="text-with-icon">
-        <img src="/img/share.png" alt="">
-        <a>Поделиться</a>
-      </div>
-    </div>
-    <div id="wishes">
-      <div class="wish">
-        <img src="/img/car.jpg" alt="" class="wish-img">
-        <div class="wish-description">
-          <p class="wish-name">Машина</p>
-          <p class="wish-price">1,5 млн ₽</p>
-        </div>
-      </div>
-      <div class="wish">
-        <img src="/img/car.jpg" alt="" class="wish-img">
-        <div class="wish-description">
-          <p class="wish-name">Машина</p>
-          <p class="wish-price">1,5 млн ₽</p>
-        </div>
-      </div>
-      <div class="wish">
-        <img src="/img/car.jpg" alt="" class="wish-img">
-        <div class="wish-description">
-          <p class="wish-name">Машина</p>
-          <p class="wish-price">1,5 млн ₽</p>
-        </div>
-      </div>
-      <div class="wish">
-        <img src="/img/car.jpg" alt="" class="wish-img">
-        <div class="wish-description">
-          <p class="wish-name">Машина</p>
-          <p class="wish-price">1,5 млн ₽</p>
-        </div>
-      </div>
-      <div class="wish">
-        <img src="/img/car.jpg" alt="" class="wish-img">
-        <div class="wish-description">
-          <p class="wish-name">Машина</p>
-          <p class="wish-price">1,5 млн ₽</p>
-        </div>
-      </div>
-      <div class="wish">
-        <img src="/img/car.jpg" alt="" class="wish-img">
-        <div class="wish-description">
-          <p class="wish-name">Машина</p>
-          <p class="wish-price">1,5 млн ₽</p>
-        </div>
-      </div>
-      <div class="wish">
-        <img src="/img/car.jpg" alt="" class="wish-img">
-        <div class="wish-description">
-          <p class="wish-name">Машина</p>
-          <p class="wish-price">1,5 млн ₽</p>
-        </div>
-      </div>
-      <div class="wish">
-        <img src="/img/car.jpg" alt="" class="wish-img">
-        <div class="wish-description">
-          <p class="wish-name">Машина</p>
-          <p class="wish-price">1,5 млн ₽</p>
-        </div>
-      </div>
-      <div class="wish">
-        <img src="/img/car.jpg" alt="" class="wish-img">
-        <div class="wish-description">
-          <p class="wish-name">Машина</p>
-          <p class="wish-price">1,5 млн ₽</p>
-        </div>
-      </div>
-      <div id="add-wish-button">
-        <p id="plus">+</p>
-        <p>Добавить желание</p>
-      </div>
-    </div>
+  <form id="add-wish-form" th:action="@{/wish/{userId}/{wishListId}(userId=1, wishListId=${wishListId})}" method="post">
+    <input placeholder="Желание" required name="name">
+    <input type="number" placeholder="Цена" name="price">
+    <input placeholder="Ссылка" name="link">
+<!--    <select name="priority">-->
+<!--      <option>Высокий</option>-->
+<!--      <option>Средний</option>-->
+<!--      <option>Низкий</option>-->
+<!--    </select>-->
+    <textarea placeholder="Описание" name="description"></textarea>
 
-  </div>
-
-
-  <form id="add-wish-form" th:action="@{/addWish}" method="post">
-    <input type="file">
-    <input placeholder="Желание" required>
-    <input type="number" placeholder="Цена">
-    <input placeholder="Ссылка">
-    <select>
-      <option>Высокий</option>
-      <option>Средний</option>
-      <option>Низкий</option>
-    </select>
-    <textarea placeholder="Описание"></textarea>
-
-    <button id="save-wish-button">Добавить желание</button>
+    <button id="save-wish-button" type="submit">Добавить желание</button>
   </form>
 
 </div>

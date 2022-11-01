@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+<header th:fragment="header">
+  <div id="nav-bar">
+    <img src="/img/logo.png" th:src="@{/img/logo.png}" alt="Logo" id="logo">
+    <a>Мои вишлисты</a>
+    <a>Буду дарить</a>
+  </div>
+  <div id="profile">
+    <img src="/img/avatar-default.jpg" th:src="@{/img/avatar-default.jpg}" alt="avatar" id="avatar">
+    <div>
+      <a>Профиль</a>
+      <a>Выход</a>
+    </div>
+  </div>
+</header>
+
+</body>
+
+</html>

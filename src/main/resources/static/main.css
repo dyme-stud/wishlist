@@ -9,6 +9,8 @@ a, p, button, input, textarea, select, label{
 
 a{
     cursor: pointer;
+    text-decoration: none;
+    color: black;
 }
 
 a:hover{
@@ -103,12 +105,6 @@ header{
 #side-bar p{
     font-size: 20px;
     margin-left: 10px;
-}
-
-.point{
-    width: 30px;
-    height: 30px;
-    margin: 10px;
 }
 
 #side-bar .text-with-icon a{

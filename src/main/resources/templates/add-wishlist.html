@@ -7,39 +7,12 @@
   <link rel="stylesheet" href="/main.css">
 </head>
 <body>
+<script type="text/javascript" th:src="@{/main.js}"></script>
 
-<script>
-
-</script>
-
-<header>
-  <div id="nav-bar">
-    <img src="/img/logo.png" alt="Logo" id="logo">
-    <a>Мои вишлисты</a>
-    <a>Буду дарить</a>
-  </div>
-  <div id="profile">
-    <img src="/img/avatar-default.jpg" alt="avatar" id="avatar">
-    <div>
-      <a>Профиль</a>
-      <a>Выход</a>
-    </div>
-  </div>
-</header>
+<div th:replace="~{fragments/header :: header}"></div>
 
 <div id="layout">
-  <div id="side-bar">
-    <p>Вишлисты</p>
-    <div class="text-with-icon">
-      <img src="/img/logo.png" alt="" class="point">
-      <a>На день рождения</a>
-    </div>
-    <div class="text-with-icon">
-      <img src="/img/logo.png" alt="" class="point">
-      <a>Личный</a>
-    </div>
-    <button><b>+</b> Добавить</button>
-  </div>
+  <div th:replace="~{fragments/side-bar :: side-bar (wishlists=${wishlists})}"></div>
   <div id="wishlist">
     <div id="wishlist-description">
       <form id="wishlist-header" th:action="@{/wishlist/1}" method="post">

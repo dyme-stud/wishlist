@@ -26,12 +26,6 @@ public class UserController {
         }
     }
 
-    @GetMapping("/main")
-    public String getMain(User user, Model model) {
-        model.addAttribute("userId", user.getId());
-        return "main-page";
-    }
-
     @GetMapping("/{userId}")
     public User get(@PathVariable Long userId) {
         return userService.get(userId);
@@ -46,5 +40,4 @@ public class UserController {
     public String registration() {
         return "registration";
     }
-
 }
