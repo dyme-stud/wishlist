@@ -1,0 +1,295 @@
+body{
+    padding: 20px;
+    --font: "Segoe Print", sans-serif;
+}
+
+a, p, button, input, textarea, select, label{
+    font-family: var(--font);
+}
+
+a{
+    cursor: pointer;
+}
+
+a:hover{
+    color: #F37E98;
+}
+
+button{
+    background: #EDDC67;
+    border: none;
+    height: 40px;
+    margin: 20px 0;
+    font-size: 20px;
+    transition-duration: 0.2s;
+    cursor: pointer;
+}
+
+button:hover{
+    background: #F37E98;
+}
+
+.text-with-icon{
+    display: flex;
+    align-items: center;
+    margin: 5px;
+}
+
+.text-with-icon img{
+    width: 20px;
+    height: 20px;
+    margin: 10px;
+}
+
+img{
+    object-fit: cover;
+}
+
+/*region header*/
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#nav-bar, #profile{
+    display: flex;
+    align-items: center;
+}
+
+#nav-bar a, #profile a{
+    font-size: 24px;
+    margin: 10px 20px;
+}
+
+#profile a{
+    font-size: 16px;
+    /*display: block;*/
+    margin: 5px;
+}
+
+#profile{
+    margin-right: 20px;
+}
+
+#logo, #avatar{
+    margin: 10px;
+}
+
+#logo{
+    width: 90px;
+    height: 90px;
+}
+
+#avatar{
+    width: 70px;
+    height: 70px;
+}
+/*endregion*/
+
+/*region layout*/
+#layout{
+    display: flex;
+}
+
+/*region side-bar*/
+#side-bar{
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    padding: 20px;
+}
+
+#side-bar p{
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.point{
+    width: 30px;
+    height: 30px;
+    margin: 10px;
+}
+
+#side-bar .text-with-icon a{
+    font-size: 24px;
+}
+
+#side-bar button{
+    width: 100%;
+}
+
+/*endregion*/
+
+/*region wishes area*/
+#wishlist{
+    width: 60%;
+    padding: 20px;
+}
+
+/*region wishlist header*/
+#wishlist-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#wishlist-description{
+    display: inline-flex;
+    align-items: center;
+}
+
+#wishlist-title{
+    font-size: 36px;
+    margin: 10px;
+}
+/*endregion*/
+
+#wishes, #will-give{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#will-give{
+    padding: 20px;
+    width: 80%;
+}
+
+#other-user-wishlist{
+    width: 80%;
+    padding: 20px;
+}
+/*endregion*/
+
+/*region add/edit/about wish*/
+#add-wish-form, #wish-description{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-left: 1px solid black;
+    width: 20%;
+    height: fit-content;
+}
+
+input, textarea, select{
+    margin: 10px 0;
+    padding: 5px;
+}
+
+#wish-description p{
+    margin: 0;
+    padding: 5px;
+}
+
+#save-wish-button{
+    width: 100%;
+    margin-left: 0;
+}
+
+#wish-description img{
+    width: 160px;
+    height: 160px;
+    margin: 5px;
+}
+
+#info{
+    display: flex;
+}
+
+#properties{
+    width: fit-content;
+    margin-left: 10px;
+}
+
+#reserve-checkbox{
+    margin: 10px;
+}
+
+#reserve-checkbox label{
+    margin-left: 5px;
+}
+/*endregion*/
+
+/*endregion*/
+
+/*region wish-card*/
+.wish, #add-wish-button{
+    width: 250px;
+    height: 320px;
+    display: flex;
+    flex-direction: column;
+    background: none;
+    margin: 10px;
+    border: 3px solid #F37E98;
+    cursor: pointer;
+}
+
+.wish-img{
+    width: 250px;
+    height: 250px;
+}
+
+.wish-description{
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: none;
+}
+
+.wish-name{
+    margin: 10px;
+    font-size: 20px;
+}
+
+.wish-price{
+    margin: 10px;
+    color: #777777;
+    font-size: 16px;
+}
+
+#add-wish-button{
+    justify-content: center;
+    text-align: center;
+}
+
+#add-wish-button:hover, .wish:hover{
+    border-color: #EDDC67;
+}
+
+#plus{
+    font-size: 100px;
+    margin: 0;
+}
+
+.will-give-wish{
+    height: fit-content;
+}
+
+.will-give-wish .text-with-icon p{
+    font-size: 14px;
+}
+
+.will-give-wish .text-with-icon p, .will-give-wish .text-with-icon .icon{
+    margin: 0 10px;
+}
+/*endregion*/
+
+/*region add wishlist*/
+#wishlist-header input, #wishlist-header button{
+    margin: 10px 15px;
+}
+
+#save-wishlist-button{
+    height: 50px;
+    width: 160px;
+}
+
+#wishlist-header input{
+    font-size: 20px;
+    height: 40px;
+}
+
+#wishlist-header input[type='date']{
+    font-size: 15px;
+}
+/*endregion*/

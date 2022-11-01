@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+  <meta charset="UTF-8">
+  <title>AddWish</title>
+  <link rel="stylesheet" href="/main.css">
+</head>
+<body>
+
+<header>
+  <div id="nav-bar">
+    <img src="/img/logo.png" alt="Logo" id="logo">
+    <a>Мои вишлисты</a>
+    <a>Буду дарить</a>
+  </div>
+  <div id="profile">
+    <img src="/img/avatar-default.jpg" alt="avatar" id="avatar">
+    <div>
+      <a>Профиль</a>
+      <a>Выход</a>
+    </div>
+  </div>
+</header>
+
+<div id="layout">
+  <div id="side-bar">
+    <p>Вишлисты</p>
+    <div class="text-with-icon">
+      <img src="/img/logo.png" alt="" class="point">
+      <a>На день рождения</a>
+    </div>
+    <div class="text-with-icon">
+      <img src="/img/logo.png" alt="" class="point">
+      <a>Личный</a>
+    </div>
+    <button><b>+</b> Добавить</button>
+  </div>
+
+  <div id="wishlist">
+    <div id="wishlist-header">
+      <div id="wishlist-description">
+        <p id="wishlist-title">На день рождения</p>
+        <div class="text-with-icon">
+          <img src="/img/clock.png" alt="">
+          <p>1 мая 2023</p>
+        </div>
+      </div>
+      <div class="text-with-icon">
+        <img src="/img/share.png" alt="">
+        <a>Поделиться</a>
+      </div>
+    </div>
+    <div id="wishes">
+      <div class="wish">
+        <img src="/img/car.jpg" alt="" class="wish-img">
+        <div class="wish-description">
+          <p class="wish-name">Машина</p>
+          <p class="wish-price">1,5 млн ₽</p>
+        </div>
+      </div>
+      <div class="wish">
+        <img src="/img/car.jpg" alt="" class="wish-img">
+        <div class="wish-description">
+          <p class="wish-name">Машина</p>
+          <p class="wish-price">1,5 млн ₽</p>
+        </div>
+      </div>
+      <div class="wish">
+        <img src="/img/car.jpg" alt="" class="wish-img">
+        <div class="wish-description">
+          <p class="wish-name">Машина</p>
+          <p class="wish-price">1,5 млн ₽</p>
+        </div>
+      </div>
+      <div class="wish">
+        <img src="/img/car.jpg" alt="" class="wish-img">
+        <div class="wish-description">
+          <p class="wish-name">Машина</p>
+          <p class="wish-price">1,5 млн ₽</p>
+        </div>
+      </div>
+      <div class="wish">
+        <img src="/img/car.jpg" alt="" class="wish-img">
+        <div class="wish-description">
+          <p class="wish-name">Машина</p>
+          <p class="wish-price">1,5 млн ₽</p>
+        </div>
+      </div>
+      <div class="wish">
+        <img src="/img/car.jpg" alt="" class="wish-img">
+        <div class="wish-description">
+          <p class="wish-name">Машина</p>
+          <p class="wish-price">1,5 млн ₽</p>
+        </div>
+      </div>
+      <div class="wish">
+        <img src="/img/car.jpg" alt="" class="wish-img">
+        <div class="wish-description">
+          <p class="wish-name">Машина</p>
+          <p class="wish-price">1,5 млн ₽</p>
+        </div>
+      </div>
+      <div class="wish">
+        <img src="/img/car.jpg" alt="" class="wish-img">
+        <div class="wish-description">
+          <p class="wish-name">Машина</p>
+          <p class="wish-price">1,5 млн ₽</p>
+        </div>
+      </div>
+      <div class="wish">
+        <img src="/img/car.jpg" alt="" class="wish-img">
+        <div class="wish-description">
+          <p class="wish-name">Машина</p>
+          <p class="wish-price">1,5 млн ₽</p>
+        </div>
+      </div>
+      <div id="add-wish-button">
+        <p id="plus">+</p>
+        <p>Добавить желание</p>
+      </div>
+    </div>
+
+  </div>
+
+
+  <form id="add-wish-form" th:action="@{/addWish}" method="post">
+    <input type="file">
+    <input placeholder="Желание" required>
+    <input type="number" placeholder="Цена">
+    <input placeholder="Ссылка">
+    <select>
+      <option>Высокий</option>
+      <option>Средний</option>
+      <option>Низкий</option>
+    </select>
+    <textarea placeholder="Описание"></textarea>
+
+    <button id="save-wish-button">Добавить желание</button>
+  </form>
+
+</div>
+
+</body>
+</html>

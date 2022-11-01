@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>MainPage</title>
+    <link type="text/css" th:href="@{/main.css}" rel="stylesheet">
+</head>
+
+<body>
+
+<header>
+    <div id="nav-bar">
+        <img src="/img/logo.png" alt="Logo" id="logo">
+        <a>Мои вишлисты</a>
+        <a>Буду дарить</a>
+    </div>
+    <div id="profile">
+        <img th:src="@{/img/avatar-default.jpg}" alt="avatar" id="avatar">
+        <div>
+            <a>Профиль</a>
+            <a>Выход</a>
+        </div>
+    </div>
+</header>
+
+<div id="layout">
+    <div id="side-bar">
+        <p>Вишлисты</p>
+        <div class="text-with-icon">
+            <img src="/img/logo.png" alt="" class="point">
+            <a>На день рождения</a>
+        </div>
+        <div class="text-with-icon">
+            <img src="/img/logo.png" alt="" class="point">
+            <a>Личный</a>
+        </div>
+        <button><b>+</b> Добавить</button>
+    </div>
+</div>
+
+</body>
+</html>
