@@ -3,7 +3,7 @@ body{
     --font: "Segoe Print", sans-serif;
 }
 
-a, p, button, input, textarea, select, label{
+a, p, button, input, textarea, select, label, h2{
     font-family: var(--font);
 }
 
@@ -25,6 +25,7 @@ button{
     font-size: 20px;
     transition-duration: 0.2s;
     cursor: pointer;
+    min-width: fit-content;
 }
 
 button:hover{
@@ -289,3 +290,30 @@ input, textarea, select{
     font-size: 15px;
 }
 /*endregion*/
+
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#login-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+}
+
+#login-form button{
+    width: 100%;
+}
+
+#login-form input{
+    width: 97%;
+}
+
+#login-form img{
+    width: 60px;
+}

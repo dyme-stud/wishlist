@@ -24,9 +24,10 @@ public class WishController {
         return MessageFormat.format("redirect:/wishlist/{0}", wishlistId);
     }
 
-    @PatchMapping("/{wishId}")
-    public Wish update(@PathVariable Long wishId, @RequestBody Wish wish) {
-        return wishService.updateWish(wish, wishId);
+    @PatchMapping("/{wishlistId}/{wishId}")
+    public String update(@PathVariable Long wishlistId, @PathVariable Long wishId, Wish wish) {
+        wishService.updateWish(wish, wishId);
+        return MessageFormat.format("redirect:/wishlist/{0}", wishlistId);
     }
 
     @DeleteMapping("/{wishId}")

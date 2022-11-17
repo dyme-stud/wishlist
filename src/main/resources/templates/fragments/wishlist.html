@@ -18,7 +18,7 @@
     </div>
 
     <div id="wishes">
-        <div class="wish" th:each="wish : ${wishes}">
+        <div class="wish" th:each="wish : ${wishes}" th:attr="onclick=|editWish('${wishListId}', '${wish.getId()}')|">
             <img src="/img/gift-default.png" th:src="@{/img/gift-default.png}" alt="" class="wish-img">
             <div class="wish-description">
                 <p class="wish-name" th:text="${wish.getName()}"></p>
