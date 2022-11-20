@@ -205,6 +205,13 @@ input, textarea, select{
 #reserve-checkbox label{
     margin-left: 5px;
 }
+
+#close-button{
+    background: none;
+    position: absolute;
+    right: 48px;
+    top: 105px;
+}
 /*endregion*/
 
 /*endregion*/
@@ -291,6 +298,7 @@ input, textarea, select{
 }
 /*endregion*/
 
+/*region login*/
 main{
     display: flex;
     flex-direction: column;
@@ -317,3 +325,4 @@ main{
 #login-form img{
     width: 60px;
 }
+/*endregion*/

@@ -9,3 +9,11 @@ function addWish(wishListId) {
 function editWish(wishListId, wishId) {
     return window.location.href = `/wishlist/${wishListId}/editWish/${wishId}`;
 }
+
+function closeForm(wishListId) {
+    return window.location.href = `/wishlist/${wishListId}`;
+}
+
+function closeWishlist() {
+    return window.location.href = `/wishlist`;
+}

@@ -15,6 +15,7 @@
   <div th:replace="~{fragments/wishlist :: wishlist (name=${name}, wishes=${wishes}, wishListId=${wishListId})}"></div>
 
   <form id="add-wish-form" th:action="@{/wish/{wishListId}(wishListId=${wishListId})}" method="post">
+    <button th:attr="onclick=|closeForm('${wishListId}')|" id="close-button">x</button>
     <input placeholder="Желание" required name="name">
     <input type="number" placeholder="Цена" name="price">
     <input placeholder="Ссылка" name="link">
