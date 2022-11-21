@@ -14,19 +14,19 @@
   <div th:replace="~{fragments/side-bar :: side-bar (wishlists=${wishlists})}"></div>
   <div th:replace="~{fragments/wishlist :: wishlist (name=${name}, wishes=${wishes}, wishListId=${wishListId})}"></div>
 
-  <form id="add-wish-form" th:action="@{/wish/{wishListId}(wishListId=${wishListId})}" method="post">
+  <form id="add-wish-form" th:action="@{/wish/{wishListId}/{wishId}(wishListId=${wishListId},wishId=${wish.getId()})}" th:method="patch">
     <button th:attr="onclick=|closeForm('${wishListId}')|" id="close-button">x</button>
-    <input placeholder="Желание" required name="name">
-    <input type="number" placeholder="Цена" name="price">
-    <input placeholder="Ссылка" name="link">
-    <select name="priority">
+    <input placeholder="Желание" required name="name" th:value="${wish.getName()}">
+    <input type="number" placeholder="Цена" name="price" th:value="${wish.getPrice()}">
+    <input placeholder="Ссылка" name="link" th:value="${wish.getLink()}">
+    <select name="priority" th:value="${wish.getPriority()}">
       <option th:each="priority : ${T(com.example.wishlist.enums.WishPriority).values()}"
               th:value="${priority}"
               th:text="${priority.displayValue}"></option>
     </select>
-    <textarea placeholder="Описание" name="description"></textarea>
+    <textarea placeholder="Описание" name="description" th:value="${wish.getDescription()}"></textarea>
 
-    <button id="save-wish-button" type="submit">Добавить желание</button>
+    <button id="save-wish-button" type="submit">Сохранить</button>
   </form>
 
 </div>

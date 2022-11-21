@@ -4,15 +4,24 @@
 <head>
     <title>Spring Security Example </title>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/main.css">
 </head>
 <body>
+<main>
+    <img src="/img/logo.png" th:src="@{/img/logo.png}" alt="">
+    <h2>Регистрация</h2>
+    <form th:action="@{/user/registration}" method="post" id="login-form">
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email"/>
+        <label for="firstName">Имя</label>
+        <input type="text" name="firstName" id="firstName"/>
+        <label for="lastName">Фамилия</label>
+        <input type="text" name="lastName" id="lastName"/>
+        <label for="password">Пароль</label>
+        <input type="password" name="password" id="password"/>
+        <button type="submit">Зарегистрироваться</button>
+    </form>
+</main>
 
-<form th:action="@{/user/registration}" method="post">
-    <div><label> Email : <input type="text" name="email"/> </label></div>
-    <div><label> First name : <input type="text" name="firstName"/> </label></div>
-    <div><label> Last name : <input type="text" name="lastName"/> </label></div>
-    <div><label> Password: <input type="password" name="password"/> </label></div>
-    <div><input type="submit" value="Зарегистрироваться"/></div>
-</form>
 </body>
 </html>
