@@ -35,7 +35,23 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public void addWishlist(Wishlist wishlist, Long userId) {
         var user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
         user.getWishlists().add(wishlist);
-        userRepository.save(user);
+        try {
+            userRepository.save(user);
+        } catch (Exception ignored) {
+
+        }
+    }
+
+    @Override
+    @Transactional
+    public void addPresentWishlist(Wishlist wishlist, Long userId) {
+        var user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
+        user.getWishlistsToPresent().add(wishlist);
+        try {
+            userRepository.save(user);
+        } catch (Exception ignored) {
+
+        }
     }
 
     @Override
@@ -59,8 +75,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public void delete(Long userId) {
-        userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
-        userRepository.deleteById(userId);
+        try {
+            userRepository.deleteById(userId);
+        } catch (Exception ignored) {
+
+        }
     }
 
     @Override
@@ -69,8 +88,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return new org.springframework.security.core.userdetails.User(myUser.getEmail(), myUser.getPassword(), mapRolesToAthorities(myUser.getRoles()));
     }
 
-    private List<? extends GrantedAuthority> mapRolesToAthorities(Set<Role> roles)
-    {
+    private List<? extends GrantedAuthority> mapRolesToAthorities(Set<Role> roles) {
         return roles.stream().map(r -> new SimpleGrantedAuthority("ROLE_" + r.name())).collect(Collectors.toList());
     }
 }

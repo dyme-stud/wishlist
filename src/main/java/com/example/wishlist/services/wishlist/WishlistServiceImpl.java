@@ -30,7 +30,10 @@ public class WishlistServiceImpl implements WishlistService {
 
     @Override
     public void deleteWishlist(Long wishlistId) {
-        wishlistRepository.deleteById(wishlistId);
+        try {
+            wishlistRepository.deleteById(wishlistId);
+        } catch (Exception ignored) {
+        }
     }
 
     @Override
@@ -39,6 +42,11 @@ public class WishlistServiceImpl implements WishlistService {
         var wishlist = wishlistRepository.findById(wishlistId).orElseThrow(WishlistNotFoundException::new);
         wishlist.getWishes().add(wish);
         wishlistRepository.save(wishlist);
+    }
+
+    @Override
+    public Wishlist getWishlist(Long id) {
+        return wishlistRepository.findById(id).orElseThrow(WishlistNotFoundException::new);
     }
 
     @Override

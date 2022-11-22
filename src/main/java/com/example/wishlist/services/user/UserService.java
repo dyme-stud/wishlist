@@ -9,6 +9,7 @@ public interface UserService {
     User updateInformation();
 
     void addWishlist(Wishlist wishlist, Long userId);
+    void addPresentWishlist(Wishlist wishlist, Long userId);
 
     User get(Long userId);
 

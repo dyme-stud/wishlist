@@ -1,6 +1,7 @@
 package com.example.wishlist.controllers;
 
 import com.example.wishlist.models.Wishlist;
+import com.example.wishlist.services.user.UserService;
 import com.example.wishlist.services.wishlist.WishlistService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import java.util.HashMap;
 @RequiredArgsConstructor
 public class WishlistController {
     private final WishlistService wishlistService;
+    private final UserService userService;
 
     @GetMapping("")
     public String getMainPage(@CookieValue(value = "user_id") Long userId, Model model) {
@@ -55,18 +57,35 @@ public class WishlistController {
         return "edit-wish";
     }
 
+    @GetMapping("/{wishlistId}/share")
+    @ResponseBody
+    public String getWishlistLink(@PathVariable Long wishlistId) {
+        return String.format("http://localhost:8080/wishlist/present/%d", wishlistId);
+    }
+
+    @GetMapping("/present/{wishlistId}")
+    public String getPresentWishlistPage(@PathVariable Long wishlistId, Model model) {
+        return "main-page";//Надо заменить
+    }
+
+    @PostMapping("/present/{wishlistId}")
+    public void addPresentWishlist(@PathVariable Long wishlistId, @CookieValue(value = "user_id") Long userId) {
+        var wishlist = wishlistService.getWishlist(wishlistId);
+        userService.addPresentWishlist(wishlist, userId);
+    }
+
     @DeleteMapping("/{wishlistId}")
     public void delete(@PathVariable Long wishlistId) {
         wishlistService.deleteWishlist(wishlistId);
     }
-    
 
-    private HashMap<String, Object> getWishlistModelAttributes(Long userId, Long wishListId, Long wishId){
+
+    private HashMap<String, Object> getWishlistModelAttributes(Long userId, Long wishListId, Long wishId) {
         var attributes = new HashMap<String, Object>();
-        
+
         var wishlists = wishlistService.getWishlists(userId);
         attributes.put("wishlists", wishlists);
-        
+
         var wishList = wishlists.stream()
                 .filter(wl -> wl.getId().equals(wishListId))
                 .findFirst()
@@ -77,7 +96,7 @@ public class WishlistController {
         attributes.put("name", wishList != null ? wishList.getName() : null);
         attributes.put("wishListId", wishListId);
 
-        if (wishId != null){
+        if (wishId != null) {
             var wish = wishes != null ?
                     wishes.stream()
                             .filter(w -> w.getId().equals(wishId))

@@ -12,5 +12,7 @@ public interface WishlistService {
 
     void addWish(Wish wish, Long wishlistId);
 
+    Wishlist getWishlist(Long id);
+
     List<Wishlist> getWishlists(Long userId);
 }

@@ -56,6 +56,10 @@ public class User implements UserDetails {
     @Column
     private List<Wishlist> wishlists;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @Column
+    private List<Wishlist> wishlistsToPresent;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles;

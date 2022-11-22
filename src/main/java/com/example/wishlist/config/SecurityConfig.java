@@ -24,7 +24,7 @@ public class SecurityConfig  {
                 .antMatchers("/login", "/user/registration").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().loginPage("/login.html")
+                .formLogin()//.loginPage("/login.html")
                 .permitAll()
                 .and()
                 .logout()

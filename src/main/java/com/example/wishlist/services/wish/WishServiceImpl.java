@@ -25,14 +25,25 @@ public class WishServiceImpl implements WishService {
     @Override
     @Transactional
     public Wish updateWish(Wish wish, Long wishId) {
-        var wishFind = wishRepository.getReferenceById(wishId);
-        //TODO написать маппер для обновления
-        wishFind.setName(wish.getName());
-        return wishRepository.save(wishFind);
+        var wishToUpdate = wishRepository.getReferenceById(wishId);
+        changeWishFields(wishToUpdate, wish);
+        return wishRepository.save(wishToUpdate);
     }
 
     @Override
     public void deleteWish(Long wishId) {
-        wishRepository.deleteById(wishId);
+        try {
+            wishRepository.deleteById(wishId);
+        } catch (Exception ignored) {
+        }
+    }
+
+    private void changeWishFields(Wish wishToChange, Wish newWish) {
+        wishToChange.setName(newWish.getName());
+        wishToChange.setDescription(newWish.getDescription());
+        wishToChange.setLink(newWish.getLink());
+        wishToChange.setPrice(newWish.getPrice());
+        wishToChange.setPriority(newWish.getPriority());
+        wishToChange.setStatus(newWish.getStatus());
     }
 }
