@@ -7,5 +7,7 @@ public interface WishService {
 
     Wish updateWish(Wish wish, Long wishId);
 
+    Wish updateWishStatus(Wish wish, Long wishId);
+
     void deleteWish(Long wishId);
 }

@@ -1,7 +1,6 @@
 package com.example.wishlist.controllers;
 
 import com.example.wishlist.exceptions.UserExistException;
-import com.example.wishlist.exceptions.UserNotFoundException;
 import com.example.wishlist.models.User;
 import com.example.wishlist.services.user.UserService;
 import lombok.RequiredArgsConstructor;

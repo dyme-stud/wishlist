@@ -1,12 +1,9 @@
 package com.example.wishlist.controllers;
 
 import com.example.wishlist.models.Wish;
-import com.example.wishlist.models.Wishlist;
 import com.example.wishlist.services.wish.WishService;
-import com.example.wishlist.services.wishlist.WishlistService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.MessageFormat;
