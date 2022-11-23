@@ -15,4 +15,6 @@ public interface WishlistService {
     Wishlist getWishlist(Long id);
 
     List<Wishlist> getWishlists(Long userId);
+
+    List<Wishlist> getWishListsToPresent(Long userId);
 }

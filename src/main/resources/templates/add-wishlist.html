@@ -5,14 +5,14 @@
   <meta charset="UTF-8">
   <title>Новый виш лист</title>
   <link rel="stylesheet" href="/main.css">
+  <script type="text/javascript" th:src="@{/main.js}"></script>
 </head>
 <body>
-<script type="text/javascript" th:src="@{/main.js}"></script>
 
-<div th:replace="~{fragments/header :: header}"></div>
+<header th:replace="~{fragments/header :: header}"></header>
 
-<div id="layout">
-  <div th:replace="~{fragments/side-bar :: side-bar (wishlists=${wishlists})}"></div>
+<main id="layout">
+  <section th:replace="~{fragments/side-bar :: side-bar (wishlists=${wishlists})}"></section>
   <div id="wishlist">
     <div id="wishlist-description">
       <form id="wishlist-header" th:action="@{/wishlist}" method="post">
@@ -23,7 +23,7 @@
       </form>
     </div>
     </div>
-  </div>
+  </main>
 </div>
 
 </body>

@@ -53,4 +53,9 @@ public class WishlistServiceImpl implements WishlistService {
     public List<Wishlist> getWishlists(Long userId) {
         return userService.get(userId).getWishlists();
     }
+
+    @Override
+    public List<Wishlist> getWishListsToPresent(Long userId) {
+        return userService.get(userId).getWishlistsToPresent();
+    }
 }

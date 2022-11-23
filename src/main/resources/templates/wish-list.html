@@ -5,17 +5,16 @@
     <meta charset="UTF-8">
     <title th:text="${name}"></title>
     <link rel="stylesheet" href="/main.css">
-
+    <script type="text/javascript" th:src="@{/main.js}"></script>
 </head>
 <body>
-<script type="text/javascript" th:src="@{/main.js}"></script>
 
-<div th:replace="~{fragments/header :: header}"></div>
+<header th:replace="~{fragments/header :: header}"></header>
 
-<div id="layout">
-    <div th:replace="~{fragments/side-bar :: side-bar (wishlists=${wishlists})}"></div>
-    <div th:replace="~{fragments/wishlist :: wishlist (name=${name}, wishes=${wishes}, wishListId=${wishListId})}"></div>
-</div>
+<main id="layout-wishlist">
+    <section th:replace="~{fragments/side-bar :: side-bar (wishlists=${wishlists})}"></section>
+    <section th:replace="~{fragments/wishlist :: wishlist (name=${name}, wishes=${wishes}, wishListId=${wishListId})}"></section>
+</main>
 
 </body>
 </html>

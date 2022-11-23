@@ -2,35 +2,41 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
 
-<div id="wishlist" th:fragment="wishlist (name, wishes, wishListId)">
-    <div id="wishlist-header">
-        <div id="wishlist-description">
+<section id="wishlist" th:fragment="wishlist (name, wishes, wishListId)">
+    <section id="wishlist-header">
+        <section id="wishlist-description">
             <p id="wishlist-title" th:text="${name}"></p>
             <!--                <div class="text-with-icon">-->
             <!--                    <img src="/img/clock.png" alt="">-->
             <!--                    <p>1 мая 2023</p>-->
             <!--                </div>-->
-        </div>
-        <div class="text-with-icon">
-            <img src="/img/share.png" alt="">
-            <a>Поделиться</a>
-        </div>
-    </div>
-
-    <div id="wishes">
-        <div class="wish" th:each="wish : ${wishes}" th:attr="onclick=|editWish('${wishListId}', '${wish.getId()}')|">
-            <img src="/img/gift-default.png" th:src="@{/img/gift-default.png}" alt="" class="wish-img">
-            <div class="wish-description">
-                <p class="wish-name" th:text="${wish.getName()}"></p>
-                <p class="wish-price" th:text="${wish.getPrice()}"></p>
+        </section>
+        <div id="sharing-area">
+            <div class="text-with-icon" th:attr="onclick=|shareWishList('${wishListId}')|" id="share-button">
+                <img src="/img/share.png" alt="">
+                <p>Поделиться</p>
+            </div>
+            <div id="share-window">
+                <p>Скопируйте эту ссылку и отправьте её друзьям, чтобы поделиться с ними своим вишлистом</p>
+                <p id="share-link"></p>
             </div>
         </div>
-        <div id="add-wish-button" th:attr="onclick=|addWish('${wishListId}')|" >
+    </section>
+
+    <section id="wishes">
+        <article class="wish" th:each="wish : ${wishes}" th:attr="onclick=|editWish('${wishListId}', '${wish.getId()}')|">
+            <img src="/img/gift-default.png" th:src="@{/img/gift-default.png}" alt="" class="wish-img">
+            <section class="wish-description">
+                <p class="wish-name" th:text="${wish.getName()}"></p>
+                <p class="wish-price" th:text="${wish.getPrice()}"></p>
+            </section>
+        </article>
+        <article id="add-wish-button" th:attr="onclick=|addWish('${wishListId}')|" >
             <p id="plus">+</p>
             <p>Добавить желание</p>
-        </div>
-    </div>
-</div>
+        </article>
+    </section>
+</section>
 
 </body>
 </html>

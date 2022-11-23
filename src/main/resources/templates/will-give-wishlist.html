@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="${name}"></title>
+  <link rel="stylesheet" href="/main.css">
+  <script type="text/javascript" th:src="@{/main.js}"></script>
+</head>
+<body>
+
+<header th:replace="~{fragments/header :: header}"></header>
+
+<main id="layout-wishlist">
+  <section th:replace="~{fragments/will-give-sidebar :: side-bar (wishlists=${wishlists})}"></section>
+  <section th:replace="~{fragments/will-give-wishlist :: wishlist (name=${name}, wishes=${wishes}, wishListId=${wishListId})}"></section>
+</main>
+
+</body>
+</html>

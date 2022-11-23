@@ -4,18 +4,18 @@
 <body>
 
 <header th:fragment="header">
-  <div id="nav-bar">
+  <section id="nav-bar">
     <img src="/img/logo.png" th:src="@{/img/logo.png}" alt="Logo" id="logo">
-    <a>Мои вишлисты</a>
-    <a>Буду дарить</a>
-  </div>
-  <div id="profile">
+    <a th:attr="onclick=|renderMainPage()|">Мои вишлисты</a>
+    <a th:attr="onclick=|renderWillGivePage()|">Буду дарить</a>
+  </section>
+  <section id="profile">
     <img src="/img/avatar-default.jpg" th:src="@{/img/avatar-default.jpg}" alt="avatar" id="avatar">
     <div>
       <a>Профиль</a>
       <a>Выход</a>
     </div>
-  </div>
+  </section>
 </header>
 
 </body>

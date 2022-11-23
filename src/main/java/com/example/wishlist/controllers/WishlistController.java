@@ -38,21 +38,21 @@ public class WishlistController {
 
     @GetMapping("/{wishListId}")
     public String getWishList(@CookieValue(value = "user_id") Long userId, @PathVariable Long wishListId, Model model) {
-        var modelAttributes = getWishlistModelAttributes(userId, wishListId, null);
+        var modelAttributes = getWishlistModelAttributes(userId, wishListId, null, false);
         modelAttributes.forEach(model::addAttribute);
         return "wish-list";
     }
 
     @GetMapping("/{wishListId}/addWish")
     public String getAddWishPage(@CookieValue(value = "user_id") Long userId, @PathVariable Long wishListId, Model model) {
-        var modelAttributes = getWishlistModelAttributes(userId, wishListId, null);
+        var modelAttributes = getWishlistModelAttributes(userId, wishListId, null, false);
         modelAttributes.forEach(model::addAttribute);
         return "add-wish";
     }
 
     @GetMapping("/{wishListId}/editWish/{wishId}")
     public String getEditWishPage(@CookieValue(value = "user_id") Long userId, @PathVariable Long wishListId, @PathVariable Long wishId, Model model) {
-        var modelAttributes = getWishlistModelAttributes(userId, wishListId, wishId);
+        var modelAttributes = getWishlistModelAttributes(userId, wishListId, wishId, false);
         modelAttributes.forEach(model::addAttribute);
         return "edit-wish";
     }
@@ -65,13 +65,35 @@ public class WishlistController {
 
     @GetMapping("/present/{wishlistId}")
     public String getPresentWishlistPage(@PathVariable Long wishlistId, Model model) {
-        return "main-page";//Надо заменить
+        var wishlist = wishlistService.getWishlist(wishlistId);
+        var wishes = wishlist != null ? wishlist.getWishes() : null;
+
+        model.addAttribute("wishes", wishes);
+        model.addAttribute("name", wishlist != null ? wishlist.getName() : null);
+        model.addAttribute("wishListId", wishlist != null ? wishlist.getId() : null);
+
+        return "other-user-wishlist";
     }
 
     @PostMapping("/present/{wishlistId}")
-    public void addPresentWishlist(@PathVariable Long wishlistId, @CookieValue(value = "user_id") Long userId) {
+    public String addPresentWishlist(@PathVariable Long wishlistId, @CookieValue(value = "user_id") Long userId, Model model) {
         var wishlist = wishlistService.getWishlist(wishlistId);
         userService.addPresentWishlist(wishlist, userId);
+        return "redirect:/wishlist/willGive";
+    }
+
+    @GetMapping("/willGive")
+    public String getPresentMainPage(@CookieValue(value = "user_id") Long userId, Model model) {
+        var wishlists = wishlistService.getWishListsToPresent(userId);
+        model.addAttribute("wishlists", wishlists);
+        return "will-give";
+    }
+
+    @GetMapping("/willGive/{wishListId}")
+    public String getPresentWishList(@CookieValue(value = "user_id") Long userId, @PathVariable Long wishListId, Model model) {
+        var modelAttributes = getWishlistModelAttributes(userId, wishListId, null, true);
+        modelAttributes.forEach(model::addAttribute);
+        return "will-give-wishlist";
     }
 
     @DeleteMapping("/{wishlistId}")
@@ -80,10 +102,10 @@ public class WishlistController {
     }
 
 
-    private HashMap<String, Object> getWishlistModelAttributes(Long userId, Long wishListId, Long wishId) {
+    private HashMap<String, Object> getWishlistModelAttributes(Long userId, Long wishListId, Long wishId, boolean isPresent) {
         var attributes = new HashMap<String, Object>();
 
-        var wishlists = wishlistService.getWishlists(userId);
+        var wishlists = isPresent ? wishlistService.getWishListsToPresent(userId) : wishlistService.getWishlists(userId);
         attributes.put("wishlists", wishlists);
 
         var wishList = wishlists.stream()

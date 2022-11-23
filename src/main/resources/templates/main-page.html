@@ -5,15 +5,15 @@
     <meta charset="UTF-8">
     <title>WishLists</title>
     <link type="text/css" th:href="@{/main.css}" rel="stylesheet">
+    <script type="text/javascript" th:src="@{/main.js}"></script>
 </head>
 
 <body>
-<script type="text/javascript" th:src="@{/main.js}"></script>
 
-<div th:replace="~{fragments/header :: header}"></div>
-<div id="layout">
-    <div th:replace="~{fragments/side-bar :: side-bar (wishlists=${wishlists})}"></div>
-</div>
+<header th:replace="~{fragments/header :: header}"></header>
+<main id="layout-wishlist">
+    <section th:replace="~{fragments/side-bar :: side-bar (wishlists=${wishlists})}"></section>
+</main>
 
 </body>
 </html>
