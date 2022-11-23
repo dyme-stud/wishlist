@@ -24,4 +24,9 @@ public class DefaultController {
         response.addCookie(cookie);
         return "redirect:/wishlist";
     }
+
+    @GetMapping("/login")
+    public String getLoginPage() {
+        return "login";
+    }
 }

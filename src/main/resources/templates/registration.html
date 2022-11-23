@@ -2,13 +2,74 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <title>Spring Security Example </title>
+    <title>Регистрация</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/main.css">
+    <style>
+        body{
+            padding: 20px;
+            --font: "Segoe Print", sans-serif;
+        }
+
+        button, input, label, h2, a{
+            font-family: var(--font);
+        }
+
+        a{
+            cursor: pointer;
+            text-decoration: none;
+            color: black;
+        }
+
+        a:hover{
+            color: #F37E98;
+        }
+
+        button{
+            background: #EDDC67;
+            border: none;
+            height: 40px;
+            margin: 20px 0;
+            font-size: 20px;
+            transition-duration: 0.2s;
+            cursor: pointer;
+            min-width: fit-content;
+        }
+
+        button:hover{
+            background: #F37E98;
+        }
+
+        main{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #login-form{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 20%;
+        }
+
+        #login-form button{
+            width: 100%;
+        }
+
+        #login-form input{
+            width: 97%;
+            margin: 10px;
+        }
+
+        #login-form label{
+            margin: 5px;
+        }
+    </style>
 </head>
 <body>
 <main>
-    <img src="/img/logo.png" th:src="@{/img/logo.png}" alt="">
     <h2>Регистрация</h2>
     <form th:action="@{/user/registration}" method="post" id="login-form">
         <label for="email">Email</label>
