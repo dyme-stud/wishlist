@@ -19,10 +19,16 @@
     <input placeholder="Желание" required name="name" th:value="${wish.getName()}">
     <input type="number" placeholder="Цена" name="price" th:value="${wish.getPrice()}">
     <input placeholder="Ссылка" name="link" th:value="${wish.getLink()}">
-    <select name="priority" th:value="${wish.getPriority()}">
+    <select name="priority">
       <option th:each="priority : ${T(com.example.wishlist.enums.WishPriority).values()}"
               th:value="${priority}"
-              th:text="${priority.displayValue}"></option>
+              th:text="${priority.displayValue}"
+              th:if="${wish.getPriority()} == ${priority}"
+              selected></option>
+      <option th:each="priority : ${T(com.example.wishlist.enums.WishPriority).values()}"
+              th:value="${priority}"
+              th:text="${priority.displayValue}"
+              th:if="${wish.getPriority()} != ${priority}"></option>
     </select>
     <textarea placeholder="Описание" name="description" th:value="${wish.getDescription()}"></textarea>
 
