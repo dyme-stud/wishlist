@@ -96,6 +96,13 @@ public class WishlistController {
         return "will-give-wishlist";
     }
 
+    @GetMapping("/willGive/{wishListId}/{wishId}")
+    public String getWillGiveWishDescription(@CookieValue(value = "user_id") Long userId, @PathVariable Long wishListId, @PathVariable Long wishId, Model model) {
+        var modelAttributes = getWishlistModelAttributes(userId, wishListId, wishId, true);
+        modelAttributes.forEach(model::addAttribute);
+        return "will-give-wish-description";
+    }
+
     @DeleteMapping("/{wishlistId}")
     public void delete(@PathVariable Long wishlistId) {
         wishlistService.deleteWishlist(wishlistId);

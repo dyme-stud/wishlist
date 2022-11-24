@@ -10,8 +10,16 @@ function editWish(wishListId, wishId) {
     return window.location.href = `/wishlist/${wishListId}/editWish/${wishId}`;
 }
 
+function getWishDescription(wishListId, wishId) {
+    return window.location.href = `/wishlist/willGive/${wishListId}/${wishId}`;
+}
+
 function closeForm(wishListId) {
     return window.location.href = `/wishlist/${wishListId}`;
+}
+
+function closeWishDescription(wishListId) {
+    return window.location.href = `/wishlist/willGive/${wishListId}`;
 }
 
 function renderMainPage() {
@@ -34,4 +42,3 @@ function shareWishList(wishListId) {
         shareWindow.style.height = '0';
     }
 }
-

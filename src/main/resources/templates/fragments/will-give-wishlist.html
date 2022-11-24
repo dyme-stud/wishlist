@@ -14,7 +14,7 @@
   </section>
 
   <section id="wishes">
-    <article class="wish" th:each="wish : ${wishes}" th:attr="onclick=|editWish('${wishListId}', '${wish.getId()}')|">
+    <article class="wish" th:each="wish : ${wishes}" th:attr="onclick=|getWishDescription('${wishListId}', '${wish.getId()}')|">
       <img src="/img/gift-default.png" th:src="@{/img/gift-default.png}" alt="" class="wish-img">
       <section class="wish-description">
         <p class="wish-name" th:text="${wish.getName()}"></p>

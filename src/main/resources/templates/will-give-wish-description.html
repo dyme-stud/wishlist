@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="${wish.getName()}"></title>
+  <link rel="stylesheet" href="/main.css">
+  <script type="text/javascript" th:src="@{/main.js}"></script>
+</head>
+<body>
+
+<header th:replace="~{fragments/header :: header}"></header>
+
+<main id="layout">
+  <section th:replace="~{fragments/will-give-sidebar :: side-bar (wishlists=${wishlists})}"></section>
+  <section th:replace="~{fragments/will-give-wishlist :: wishlist (name=${name}, wishes=${wishes}, wishListId=${wishListId})}"></section>
+
+  <section id="present-description">
+    <button th:attr="onclick=|closeWishDescription('${wishListId}')|" id="close-button">x</button>
+
+    <p th:text="${wish.getName()}" id="name"></p>
+    <label for="price">Цена</label>
+    <p th:text="(${wish.getPrice()} == null ? 0 : ${wish.getPrice()}) + ' руб.'" id="price"></p>
+    <label for="link">Ссылка</label>
+    <p th:text="${wish.getLink()}" id="link"></p>
+    <label for="priority">Приоритет</label>
+    <p th:each="priority : ${T(com.example.wishlist.enums.WishPriority).values()}"
+       th:text="${priority.displayValue}"
+       th:if="${wish.getPriority()} == ${priority}"
+       id="priority"></p>
+    <label for="description">Описание</label>
+    <p th:text="${wish.getDescription()}" id="description"></p>
+
+  </section>
+
+</main>
+
+</body>
+</html>

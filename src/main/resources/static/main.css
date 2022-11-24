@@ -172,7 +172,7 @@ header{
 /*endregion*/
 
 /*region add/edit/about wish*/
-#add-wish-form, #wish-description{
+#add-wish-form, #present-description{
     display: flex;
     flex-direction: column;
     padding: 20px;
@@ -185,20 +185,28 @@ input, textarea, select{
     padding: 5px;
 }
 
-#wish-description p{
+#present-description p{
     margin: 0;
     padding: 5px;
+}
+
+#present-description p:not(#name){
+    border: 1px solid black;
+    min-height: 28px;
+}
+
+#present-description #name {
+    font-size: x-large;
+}
+
+#present-description label{
+    color: #777777;
+    margin-top: 10px;
 }
 
 #save-wish-button{
     width: 100%;
     margin-left: 0;
-}
-
-#wish-description img{
-    width: 160px;
-    height: 160px;
-    margin: 5px;
 }
 
 #info{

@@ -33,6 +33,8 @@ public class SecurityConfig  {
                     .permitAll()
                 .and()
                     .logout()
+                    .logoutUrl("/logout")
+                    .logoutSuccessUrl("/login")
                     .permitAll();
         return http.build();
     }

@@ -31,7 +31,7 @@
               th:text="${priority.displayValue}"
               th:if="${wish.getPriority()} != ${priority}"></option>
     </select>
-    <textarea placeholder="Описание" name="description" th:value="${wish.getDescription()}"></textarea>
+    <textarea placeholder="Описание" name="description" th:text="${wish.getDescription()}"></textarea>
 
     <button id="save-wish-button" type="submit">Сохранить</button>
   </form>
