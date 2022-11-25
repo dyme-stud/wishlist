@@ -5,7 +5,12 @@ import com.example.wishlist.services.wish.WishService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.MessageFormat;
 
 @Controller
@@ -16,8 +21,10 @@ public class WishController {
     private final WishService wishService;
 
     @PostMapping("/{wishlistId}")
-    public String create(@CookieValue(value = "user_id") Long userId, @PathVariable Long wishlistId, Wish wish) {
+    public String create(@CookieValue(value = "user_id") Long userId, @PathVariable Long wishlistId, Wish wish, @RequestParam("file") MultipartFile file) throws IOException {
+        wish.setImage(file.getBytes());
         wishService.createWish(wish, wishlistId);
+
         return MessageFormat.format("redirect:/wishlist/{0}", wishlistId);
     }
 

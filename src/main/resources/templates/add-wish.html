@@ -15,11 +15,12 @@
   <section th:replace="~{fragments/side-bar :: side-bar (wishlists=${wishlists})}"></section>
   <section th:replace="~{fragments/wishlist :: wishlist (name=${name}, wishes=${wishes}, wishListId=${wishListId})}"></section>
 
-  <form id="add-wish-form" th:action="@{/wish/{wishListId}(wishListId=${wishListId})}" method="post">
+  <form id="add-wish-form" th:action="@{/wish/{wishListId}(wishListId=${wishListId})}" method="post" enctype="multipart/form-data">
     <button th:attr="onclick=|closeForm('${wishListId}')|" id="close-button">x</button>
     <input placeholder="Желание" required name="name">
     <input type="number" placeholder="Цена" name="price">
     <input placeholder="Ссылка" name="link">
+    <input type="file" width="100" height="100" name="file"/>
     <select name="priority">
       <option th:each="priority : ${T(com.example.wishlist.enums.WishPriority).values()}"
               th:value="${priority}"

@@ -4,10 +4,12 @@ import com.example.wishlist.models.Wishlist;
 import com.example.wishlist.services.user.UserService;
 import com.example.wishlist.services.wishlist.WishlistService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.codec.Base64;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.UnsupportedEncodingException;
 import java.text.MessageFormat;
 import java.util.HashMap;
 
@@ -109,7 +111,7 @@ public class WishlistController {
     }
 
 
-    private HashMap<String, Object> getWishlistModelAttributes(Long userId, Long wishListId, Long wishId, boolean isPresent) {
+    private HashMap<String, Object> getWishlistModelAttributes(Long userId, Long wishListId, Long wishId, boolean isPresent){
         var attributes = new HashMap<String, Object>();
 
         var wishlists = isPresent ? wishlistService.getWishListsToPresent(userId) : wishlistService.getWishlists(userId);
@@ -124,6 +126,17 @@ public class WishlistController {
         attributes.put("wishes", wishes);
         attributes.put("name", wishList != null ? wishList.getName() : null);
         attributes.put("wishListId", wishListId);
+        for (var wish: wishes)
+        {
+            byte[] encodeBase64 = Base64.encode(wish.getImage());
+            String base64Encoded = null;
+            try {
+                base64Encoded = new String(encodeBase64, "UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                throw new RuntimeException(e);
+            }
+            attributes.put("wishImage", String.format("data:image/gif;base64,%s", base64Encoded));
+        }
 
         if (wishId != null) {
             var wish = wishes != null ?
