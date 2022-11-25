@@ -7,6 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -22,7 +26,18 @@ public class WishController {
 
     @PostMapping("/{wishlistId}")
     public String create(@CookieValue(value = "user_id") Long userId, @PathVariable Long wishlistId, Wish wish, @RequestParam("file") MultipartFile file) throws IOException {
-        wish.setImage(file.getBytes());
+        if (file.getOriginalFilename() == "")
+        {
+            BufferedImage bImage = ImageIO.read(new File("src/main/resources/static/img/gift-default.png"));
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            ImageIO.write(bImage, "png", bos );
+            byte [] data = bos.toByteArray();
+            wish.setImage(data);
+        }
+        else
+        {
+            wish.setImage(file.getBytes());
+        }
         wishService.createWish(wish, wishlistId);
         return MessageFormat.format("redirect:/wishlist/{0}", wishlistId);
     }
