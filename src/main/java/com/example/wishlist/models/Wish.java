@@ -37,4 +37,7 @@ public class Wish {
 
     @Column(length = 1000)
     private String description;
+
+    @Column
+    private byte[] image;
 }

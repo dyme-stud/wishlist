@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -19,7 +20,10 @@ public class Wishlist {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column()
+    @Column
+    private Date date;
+
+    @Column
     private String name;
 
     @OneToMany(cascade = CascadeType.ALL)
