@@ -271,6 +271,15 @@ input, textarea, select{
     font-size: 16px;
 }
 
+.delete-button{
+    float: bottom;
+    height: 15px;
+    font-size: 10px;
+    margin: 0;
+    width : 10px
+}
+
+
 #add-wish-button{
     justify-content: center;
     text-align: center;

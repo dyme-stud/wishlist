@@ -16,6 +16,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.MessageFormat;
+import java.util.Objects;
 
 @Controller
 @RequestMapping(path = "/wish")
@@ -43,7 +44,19 @@ public class WishController {
     }
 
     @PatchMapping("/{wishlistId}/{wishId}")
-    public String update(@PathVariable Long wishlistId, @PathVariable Long wishId, Wish wish) {
+    public String update(@PathVariable Long wishlistId, @PathVariable Long wishId, Wish wish, @RequestParam("file") MultipartFile file) throws IOException {
+        if (file.getOriginalFilename() == "")
+        {
+            BufferedImage bImage = ImageIO.read(new File("src/main/resources/static/img/gift-default.png"));
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            ImageIO.write(bImage, "png", bos );
+            byte [] data = bos.toByteArray();
+            wish.setImage(data);
+        }
+        if (!Objects.equals(file.getOriginalFilename(), ""))
+        {
+            wish.setImage(file.getBytes());
+        }
         wishService.updateWish(wish, wishId);
         return MessageFormat.format("redirect:/wishlist/{0}", wishlistId);
     }
