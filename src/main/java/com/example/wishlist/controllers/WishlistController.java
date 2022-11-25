@@ -126,16 +126,17 @@ public class WishlistController {
         attributes.put("wishes", wishes);
         attributes.put("name", wishList != null ? wishList.getName() : null);
         attributes.put("wishListId", wishListId);
-        for (var wish: wishes)
-        {
-            byte[] encodeBase64 = Base64.encode(wish.getImage());
-            String base64Encoded = null;
-            try {
-                base64Encoded = new String(encodeBase64, "UTF-8");
-            } catch (UnsupportedEncodingException e) {
-                throw new RuntimeException(e);
+        if (wishes != null) {
+            for (var wish : wishes) {
+                byte[] encodeBase64 = Base64.encode(wish.getImage());
+                String base64Encoded = null;
+                try {
+                    base64Encoded = new String(encodeBase64, "UTF-8");
+                } catch (UnsupportedEncodingException e) {
+                    throw new RuntimeException(e);
+                }
+                wish.setBase64Image(String.format("data:image/gif;base64,%s", base64Encoded));
             }
-            attributes.put("wishImage", String.format("data:image/gif;base64,%s", base64Encoded));
         }
 
         if (wishId != null) {

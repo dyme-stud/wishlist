@@ -6,10 +6,6 @@
     <section id="wishlist-header">
         <section id="wishlist-description">
             <p id="wishlist-title" th:text="${name}"></p>
-            <!--                <div class="text-with-icon">-->
-            <!--                    <img src="/img/clock.png" alt="">-->
-            <!--                    <p>1 мая 2023</p>-->
-            <!--                </div>-->
         </section>
         <div id="sharing-area">
             <div class="text-with-icon" th:attr="onclick=|shareWishList('${wishListId}')|" id="share-button">
@@ -25,7 +21,7 @@
 
     <section id="wishes">
         <article class="wish" th:each="wish : ${wishes}" th:attr="onclick=|editWish('${wishListId}', '${wish.getId()}')|">
-            <img src="${wishImage}" th:src="${wishImage}" alt="" class="wish-img">
+            <img src="${wish.getBase64Image()}" th:src="${wish.getBase64Image()}" alt="" class="wish-img">
             <section class="wish-description">
                 <p class="wish-name" th:text="${wish.getName()}"></p>
                 <p class="wish-price" th:text="${wish.getPrice()}"></p>

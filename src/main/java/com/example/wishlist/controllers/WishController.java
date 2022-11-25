@@ -24,7 +24,6 @@ public class WishController {
     public String create(@CookieValue(value = "user_id") Long userId, @PathVariable Long wishlistId, Wish wish, @RequestParam("file") MultipartFile file) throws IOException {
         wish.setImage(file.getBytes());
         wishService.createWish(wish, wishlistId);
-
         return MessageFormat.format("redirect:/wishlist/{0}", wishlistId);
     }
 

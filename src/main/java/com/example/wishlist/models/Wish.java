@@ -40,4 +40,6 @@ public class Wish {
 
     @Column
     private byte[] image;
+
+    private String base64Image;
 }
