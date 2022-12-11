@@ -36,6 +36,9 @@
 
     <button id="save-wish-button" type="submit">Сохранить</button>
   </form>
+  <form th:action="@{/wish/delete/{wishId}(wishId=${wish.getId()})}" th:method="post">
+  <button id="delete-button" type="submit">Удалить</button>>
+  </form>
 
 </main>
 

@@ -59,12 +59,6 @@ public class WishlistController {
         return "edit-wish";
     }
 
-    @GetMapping("/{wishlistId}/share")
-    @ResponseBody
-    public String getWishlistLink(@PathVariable Long wishlistId) {
-        return String.format("http://localhost:8080/wishlist/present/%d", wishlistId);
-    }
-
     @GetMapping("/present/{wishlistId}")
     public String getPresentWishlistPage(@PathVariable Long wishlistId, Model model) {
         var wishlist = wishlistService.getWishlist(wishlistId);

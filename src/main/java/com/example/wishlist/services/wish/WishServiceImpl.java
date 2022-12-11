@@ -22,6 +22,7 @@ public class WishServiceImpl implements WishService {
     @Override
     @Transactional
     public Wish createWish(Wish wish, Long wishlistId) {
+        wish.setStatus(WishStatus.Free);
         var savedWish = wishRepository.save(wish);
         wishlistService.addWish(wish, wishlistId);
         return savedWish;
@@ -45,6 +46,7 @@ public class WishServiceImpl implements WishService {
     }
 
     @Override
+    @Transactional
     public void deleteWish(Long wishId) {
         try {
             wishRepository.deleteById(wishId);
@@ -57,7 +59,8 @@ public class WishServiceImpl implements WishService {
         wishToUpdate.setDescription(newWish.getDescription());
         wishToUpdate.setLink(newWish.getLink());
         wishToUpdate.setPrice(newWish.getPrice());
-        wishToUpdate.setImage(newWish.getImage());
+        if (newWish.getImage().length != 1410)
+            wishToUpdate.setImage(newWish.getImage());
         if (Arrays.stream(WishPriority.values()).anyMatch((t) -> t.equals(newWish.getPriority())))
             wishToUpdate.setPriority(newWish.getPriority());
         if (Arrays.stream(WishStatus.values()).anyMatch((t) -> t.equals(newWish.getStatus())))

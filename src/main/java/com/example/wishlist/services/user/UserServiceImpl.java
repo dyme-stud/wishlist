@@ -46,6 +46,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Transactional
     public void addPresentWishlist(Wishlist wishlist, Long userId) {
         var user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
+        if (user.getWishlists().stream().anyMatch(x -> x.getId().equals(wishlist.getId())))
+            return;
         user.getWishlistsToPresent().add(wishlist);
         try {
             userRepository.save(user);

@@ -3,7 +3,9 @@ package com.example.wishlist.controllers;
 import com.example.wishlist.models.Wish;
 import com.example.wishlist.services.wish.WishService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -61,7 +63,7 @@ public class WishController {
         return MessageFormat.format("redirect:/wishlist/{0}", wishlistId);
     }
 
-    @DeleteMapping("/{wishId}")
+    @PostMapping("/delete/{wishId}")
     public void delete(@PathVariable Long wishId) {
         wishService.deleteWish(wishId);
     }
