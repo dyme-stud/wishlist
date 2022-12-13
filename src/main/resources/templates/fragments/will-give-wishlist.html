@@ -15,7 +15,7 @@
 
   <section id="wishes">
     <article class="wish other" th:each="wish : ${wishes}" th:attr="onclick=|getWishDescription('${wishListId}', '${wish.getId()}')|">
-      <img src="${wish.getBase64Image()}" th:src="${wish.getBase64Image()}" alt="" class="wish-img">
+      <img src="${wish.getBase64Image()}" th:src="${wish.getBase64Image()}" th:alt="${wish.getName()}" class="wish-img">
       <section class="wish-description">
         <p class="wish-name" th:text="${wish.getName()}"></p>
         <p class="wish-price" th:text="${wish.getPrice()} + ' руб.'" th:if="${wish.getPrice() != null}"></p>

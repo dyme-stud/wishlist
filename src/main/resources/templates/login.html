@@ -14,7 +14,7 @@
             --font: "Segoe Print", sans-serif;
         }
 
-        button, input, label, h2, a{
+        button, input, label, h2, a, p{
             font-family: var(--font);
         }
 
@@ -74,12 +74,16 @@
         #login-form a{
             margin: 10px;
         }
+        #error {
+            color: #F37E98;
+        }
     </style>
 </head>
 <body>
 <main>
     <h2>Вход</h2>
     <form th:action="@{/login}" method="post" id="login-form">
+        <p th:if="${param.error}" id="error">Неправильные имя и/или пароль</p>
         <label for="username">Email</label>
         <input type="text" name="username" id="username"/>
         <label for="password">Пароль</label>
