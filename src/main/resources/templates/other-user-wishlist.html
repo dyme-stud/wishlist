@@ -25,12 +25,16 @@
     </section>
 
     <section id="wishes">
-      <article class="wish" th:each="wish : ${wishes}" th:attr="onclick=|editWish('${wishListId}', '${wish.getId()}')|">
+      <article class="wish other" th:each="wish : ${wishes}" th:attr="onclick=|editWish('${wishListId}', '${wish.getId()}')|">
         <img src="${wish.getBase64Image()}" th:src="${wish.getBase64Image()}" alt="" class="wish-img">
         <section class="wish-description">
           <p class="wish-name" th:text="${wish.getName()}"></p>
-          <p class="wish-price" th:text="${wish.getPrice()}"></p>
+          <p class="wish-price" th:text="${wish.getPrice()} + ' руб.'" th:if="${wish.getPrice() != null}"></p>
         </section>
+        <p th:each="status : ${T(com.example.wishlist.enums.WishStatus).values()}"
+           th:text="${status.displayValue}"
+           th:if="${wish.getStatus()} == ${status}"
+           th:class="${wish.getStatus() == T(com.example.wishlist.enums.WishStatus).Taken} ? 'wish-status taken' : 'wish-status'"></p>
       </article>
     </section>
   </section>

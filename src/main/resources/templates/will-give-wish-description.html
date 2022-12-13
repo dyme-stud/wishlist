@@ -30,7 +30,14 @@
        id="priority"></p>
     <label for="description">Описание</label>
     <p th:text="${wish.getDescription()}" id="description"></p>
-
+    <form th:if="${wish.getStatus() == T(com.example.wishlist.enums.WishStatus).Free}"
+          th:method="patch"
+          th:action="@{/wish/willGive/{wishListId}/{wishId}(wishListId=${wishListId},wishId=${wish.getId()})}"
+          id="reserve-wish-form">
+      <input type="checkbox" id="reserve" name="status" th:value="${T(com.example.wishlist.enums.WishStatus).Taken}">
+      <label for="reserve">Забронировать желание</label>
+      <button type="submit" id="save-wish-button">Подтвердить бронь</button>
+    </form>
   </section>
 
 </main>

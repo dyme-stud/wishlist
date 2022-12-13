@@ -172,12 +172,17 @@ header{
 /*endregion*/
 
 /*region add/edit/about wish*/
-#add-wish-form, #present-description{
+#add-wish-form, #present-description, #edit-wish-form{
     display: flex;
     flex-direction: column;
     padding: 20px;
     border-left: 1px solid black;
     height: fit-content;
+}
+
+#edit-wish-form #add-wish-form {
+    border: 0;
+    padding: 0;
 }
 
 input, textarea, select{
@@ -204,9 +209,18 @@ input, textarea, select{
     margin-top: 10px;
 }
 
-#save-wish-button{
+#save-wish-button, #delete-button{
     width: 100%;
     margin-left: 0;
+}
+
+#delete-button {
+    background: none;
+}
+
+#delete-button:hover {
+    background: none;
+    color: #F37E98;
 }
 
 #info{
@@ -218,19 +232,19 @@ input, textarea, select{
     margin-left: 10px;
 }
 
-#reserve-checkbox{
-    margin: 10px;
-}
-
-#reserve-checkbox label{
-    margin-left: 5px;
-}
-
 #close-button{
     background: none;
     position: absolute;
     right: 48px;
     top: 105px;
+}
+
+#reserve-wish-form {
+    margin-top: 10px;
+}
+
+#reserve-wish-form label {
+    margin-left: 10px;
 }
 /*endregion*/
 
@@ -246,6 +260,10 @@ input, textarea, select{
     margin: 10px;
     border: 3px solid #F37E98;
     cursor: pointer;
+}
+
+.other {
+    height: 380px;
 }
 
 .wish-img{
@@ -269,6 +287,14 @@ input, textarea, select{
     margin: 10px;
     color: #777777;
     font-size: 16px;
+}
+
+.wish-status {
+    margin: 10px;
+}
+
+.taken {
+    color: #F37E98;
 }
 
 .delete-button{
@@ -305,6 +331,7 @@ input, textarea, select{
 .will-give-wish .text-with-icon p, .will-give-wish .text-with-icon .icon{
     margin: 0 10px;
 }
+
 /*endregion*/
 
 /*region add wishlist*/

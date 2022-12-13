@@ -63,6 +63,14 @@ public class WishController {
         return MessageFormat.format("redirect:/wishlist/{0}", wishlistId);
     }
 
+
+    @PatchMapping("/willGive/{wishlistId}/{wishId}")
+    public String updateStatus(@PathVariable Long wishlistId, @PathVariable Long wishId, Wish wish){
+        wishService.updateWishStatus(wish, wishId);
+        return MessageFormat.format("redirect:/wishlist/willGive/{0}", wishlistId);
+    }
+
+
     @PostMapping("/delete/{wishId}")
     public void delete(@PathVariable Long wishId) {
         wishService.deleteWish(wishId);
