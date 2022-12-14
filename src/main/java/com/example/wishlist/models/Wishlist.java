@@ -26,7 +26,11 @@ public class Wishlist {
     @Column
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "wishlist")
     @Column
     private List<Wish> wishes;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private User user;
 }

@@ -40,6 +40,10 @@ public class Wish {
     @Column(length = 1000)
     private String description;
 
+    @ManyToOne
+    @JoinColumn(name = "wishlist_id")
+    private Wishlist wishlist;
+
     @Column
     private byte[] image;
 

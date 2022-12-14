@@ -71,8 +71,9 @@ public class WishController {
     }
 
 
-    @PostMapping("/delete/{wishId}")
-    public void delete(@PathVariable Long wishId) {
+    @PostMapping("/delete/{wishId}/{wishlistId}")
+    public String delete(@PathVariable Long wishId, @PathVariable Long wishlistId) {
         wishService.deleteWish(wishId);
+        return MessageFormat.format("redirect:/wishlist/{0}", wishlistId);
     }
 }

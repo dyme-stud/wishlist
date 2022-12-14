@@ -22,9 +22,10 @@ public class WishServiceImpl implements WishService {
     @Override
     @Transactional
     public Wish createWish(Wish wish, Long wishlistId) {
+        wish.setWishlist(wishlistService.getWishlist(wishlistId));
         wish.setStatus(WishStatus.Free);
         var savedWish = wishRepository.save(wish);
-        wishlistService.addWish(wish, wishlistId);
+        wishlistService.addWish(savedWish, wishlistId);
         return savedWish;
     }
 

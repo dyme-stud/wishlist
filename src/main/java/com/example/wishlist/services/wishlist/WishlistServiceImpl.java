@@ -23,6 +23,7 @@ public class WishlistServiceImpl implements WishlistService {
     @Override
     @Transactional
     public Wishlist createWishlist(Wishlist wishlist, Long userId) {
+        wishlist.setUser(userService.get(userId));
         var savedWishlist = wishlistRepository.save(wishlist);
         userService.addWishlist(savedWishlist, userId);
         return savedWishlist;
