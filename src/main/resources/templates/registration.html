@@ -82,13 +82,13 @@
     <h2>Регистрация</h2>
     <form th:action="@{/user/registration}" method="post" id="login-form">
         <label for="email">Email</label>
-        <input type="text" name="email" id="email"/>
+        <input type="text" name="email" id="email" placeholder="Введите email"/>
         <label for="firstName">Имя</label>
-        <input type="text" name="firstName" id="firstName"/>
+        <input type="text" name="firstName" id="firstName" placeholder="Введите имя"/>
         <label for="lastName">Фамилия</label>
-        <input type="text" name="lastName" id="lastName"/>
+        <input type="text" name="lastName" id="lastName" placeholder="Введите фамилию"/>
         <label for="password">Пароль</label>
-        <input type="password" name="password" id="password"/>
+        <input type="password" name="password" id="password" placeholder="Введите пароль"/>
         <button type="submit">Зарегистрироваться</button>
     </form>
 

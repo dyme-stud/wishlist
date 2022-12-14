@@ -278,6 +278,10 @@ input, textarea, select{
     border-top: none;
 }
 
+.no-img {
+    height: 180px;
+}
+
 .wish-name{
     margin: 10px;
     font-size: 20px;

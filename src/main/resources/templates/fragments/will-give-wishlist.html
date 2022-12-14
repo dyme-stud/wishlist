@@ -2,14 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
 
-<section id="wishlist" th:fragment="wishlist (name, wishes, wishListId)">
+<section id="wishlist" th:fragment="wishlist (name, wishes, wishListId, wishlistDate)">
   <section id="wishlist-header">
     <section id="wishlist-description">
       <p id="wishlist-title" th:text="${name}"></p>
-      <!--                <div class="text-with-icon">-->
-      <!--                    <img src="/img/clock.png" alt="">-->
-      <!--                    <p>1 мая 2023</p>-->
-      <!--                </div>-->
+        <div class="text-with-icon">
+            <img src="/img/clock.png" alt="">
+            <p th:text="wishlistDate"></p>
+        </div>
     </section>
   </section>
 

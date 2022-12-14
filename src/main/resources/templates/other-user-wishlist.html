@@ -10,14 +10,14 @@
 <header th:replace="~{fragments/header :: header}"></header>
 
 <main>
-  <section id="wishlist" th:fragment="wishlist (name, wishes, wishListId)">
+  <section id="wishlist">
     <section id="other-user-wishlist-header">
       <section id="wishlist-description">
         <p id="wishlist-title" th:text="${name}"></p>
-        <!--                <div class="text-with-icon">-->
-        <!--                    <img src="/img/clock.png" alt="">-->
-        <!--                    <p>1 мая 2023</p>-->
-        <!--                </div>-->
+          <div class="text-with-icon">
+              <img src="/img/clock.png" alt="">
+              <p th:text="${wishlistDate}"></p>
+          </div>
       </section>
       <form method="POST" th:action="@{/wishlist/present/{wishListId}(wishListId=${wishListId})}" id="save-other-user-wishlist">
         <button type="submit">Сохранить</button>
@@ -25,8 +25,7 @@
     </section>
 
     <section id="wishes">
-      <article class="wish other" th:each="wish : ${wishes}">
-        <img src="${wish.getBase64Image()}" th:src="${wish.getBase64Image()}" th:alt="${wish.getName()}" class="wish-img">
+      <article class="wish other no-img" th:each="wish : ${wishes}">
         <section class="wish-description">
           <p class="wish-name" th:text="${wish.getName()}"></p>
           <p class="wish-price" th:text="${wish.getPrice()} + ' руб.'" th:if="${wish.getPrice() != null}"></p>

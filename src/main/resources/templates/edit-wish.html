@@ -13,7 +13,7 @@
 
 <main id="layout">
   <section th:replace="~{fragments/side-bar :: side-bar (wishlists=${wishlists})}"></section>
-  <section th:replace="~{fragments/wishlist :: wishlist (name=${name}, wishes=${wishes}, wishListId=${wishListId})}"></section>
+  <section th:replace="~{fragments/wishlist :: wishlist (name=${name}, wishes=${wishes}, wishListId=${wishListId}, wishlistDate=${wishlistDate})}"></section>
 
   <div id="edit-wish-form">
     <form id="add-wish-form" th:action="@{/wish/{wishListId}/{wishId}(wishListId=${wishListId},wishId=${wish.getId()})}" enctype="multipart/form-data" th:method="patch">
