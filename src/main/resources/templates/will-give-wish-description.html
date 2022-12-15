@@ -13,16 +13,15 @@
 
 <main id="layout">
   <section th:replace="~{fragments/will-give-sidebar :: side-bar (wishlists=${wishlists})}"></section>
-  <section th:replace="~{fragments/will-give-wishlist :: wishlist (name=${name}, wishes=${wishes}, wishListId=${wishListId})}"></section>
+  <section th:replace="~{fragments/will-give-wishlist :: wishlist (name=${name}, wishes=${wishes}, wishListId=${wishListId}, wishlistDate=${wishlistDate})}"></section>
 
   <section id="present-description">
     <button th:attr="onclick=|closeWishDescription('${wishListId}')|" id="close-button">x</button>
 
     <p th:text="${wish.getName()}" id="name"></p>
+    <a th:href="${wish.getLink()}">Cсылка</a>
     <label for="price">Цена</label>
     <p th:text="(${wish.getPrice()} == null ? 0 : ${wish.getPrice()}) + ' руб.'" id="price"></p>
-    <label for="link">Ссылка</label>
-    <p th:text="${wish.getLink()}" id="link"></p>
     <label for="priority">Приоритет</label>
     <p th:each="priority : ${T(com.example.wishlist.enums.WishPriority).values()}"
        th:text="${priority.displayValue}"

@@ -10,7 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.UnsupportedEncodingException;
+import java.text.DateFormat;
 import java.text.MessageFormat;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 
 @Controller
@@ -68,6 +70,9 @@ public class WishlistController {
         model.addAttribute("name", wishlist != null ? wishlist.getName() : null);
         model.addAttribute("wishListId", wishlist != null ? wishlist.getId() : null);
 
+        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        model.addAttribute("wishlistDate", wishlist != null ? formatter.format(wishlist.getDate()) : null);
+
         return "other-user-wishlist";
     }
 
@@ -120,6 +125,10 @@ public class WishlistController {
         attributes.put("wishes", wishes);
         attributes.put("name", wishList != null ? wishList.getName() : null);
         attributes.put("wishListId", wishListId);
+
+        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        attributes.put("wishlistDate", wishList != null ? formatter.format(wishList.getDate()) : null);
+
         if (wishes != null) {
             for (var wish : wishes) {
                 if (wish.getImage() != null) {
