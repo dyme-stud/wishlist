@@ -193,6 +193,7 @@ input, textarea, select{
 #present-description p{
     margin: 0;
     padding: 5px;
+    word-break: break-word;
 }
 
 #present-description p:not(#name){
@@ -276,6 +277,7 @@ input, textarea, select{
     align-items: center;
     justify-content: space-between;
     border-top: none;
+    height: 70px;
 }
 
 .no-img {
